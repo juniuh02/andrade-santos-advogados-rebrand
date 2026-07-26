@@ -231,8 +231,13 @@
       object-fit: cover;
       object-position: center;
       filter: saturate(.78) contrast(1.06);
-      opacity: .58;
+      opacity: 0;
       will-change: transform;
+      transition: opacity .9s ease;
+    }
+
+    .hero-media.is-ready {
+      opacity: .58;
     }
 
     .hero-inner {
@@ -1020,7 +1025,8 @@
     @media (max-width: 480px) {
       .container { width: min(calc(100% - 28px), var(--container)); }
       .hero { border-bottom-left-radius: 58px; }
-      .hero-media { width: 100%; opacity: .34; object-position: 62% 0; }
+      .hero-media { width: 100%; opacity: 0; object-position: 62% 0; }
+      .hero-media.is-ready { opacity: .34; }
       .hero-inner { min-height: auto; padding: 104px 0 72px; }
       .hero-actions .btn { width: 100%; }
       .statement { padding: 26px; }
@@ -1052,7 +1058,7 @@
 
     <main>
       <section class="hero" id="inicio" aria-labelledby="hero-title">
-        <video class="hero-media" autoplay muted loop playsinline poster="./assets/foto-lider.png" aria-label="Vídeo institucional da Andrade Santos Advogados">
+        <video class="hero-media" autoplay muted loop playsinline preload="auto" aria-label="Vídeo institucional da Andrade Santos Advogados">
           <source src="./assets/video-hero.mp4" type="video/mp4">
         </video>
         <div class="container hero-inner">
@@ -1335,6 +1341,17 @@
     const header = document.querySelector(".site-header");
     const toggle = document.querySelector(".menu-toggle");
     const links = document.querySelectorAll(".nav-links a");
+    const heroVideo = document.querySelector(".hero-media");
+
+    const revealHeroVideo = () => {
+      heroVideo.classList.add("is-ready");
+    };
+
+    if (heroVideo.readyState >= 2) {
+      revealHeroVideo();
+    } else {
+      heroVideo.addEventListener("loadeddata", revealHeroVideo, { once: true });
+    }
 
     const updateHeaderState = () => {
       header.classList.toggle("is-scrolled", window.scrollY > 24);
@@ -1510,11 +1527,9 @@
               stagger: 0.055
             }, "header")
             .fromTo(".hero-media", {
-              scale: scaleFromOne(1.14),
-              opacity: reduceMotion ? 0.26 : 0.12
+              scale: scaleFromOne(1.14)
             }, {
               scale: 1,
-              opacity: 0.58,
               duration: reduceMotion ? 1.15 : 2.2,
               ease: "power2.out"
             }, "header")
