@@ -1,0 +1,1994 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Andrade Santos Advogados - Direito Estudantil e Cível">
+  <title>Andrade Santos Advogados | Direito Estudantil e Cível</title>
+  <link rel="icon" href="./assets/favicon.jpg">
+  <style>
+    :root {
+      --ink: #12141C;
+      --paper: #FAF8F4;
+      --sand: #EFE9DD;
+      --gold: #C6A15B;
+      --gold-soft: #D9BC85;
+      --text: #2B2B2E;
+      --muted: #6E6E76;
+      --line: #E1DED6;
+      --blue: #1E3FE0;
+      --green: #25D366;
+      --shadow: 0 4px 12px rgba(0,0,0,.08);
+      --shadow-strong: 0 8px 24px rgba(0,0,0,.18);
+      --radius: 16px;
+      --container: 1180px;
+      color-scheme: light;
+      scroll-behavior: smooth;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--sand);
+      color: var(--text);
+      font-family: Inter, Manrope, "Segoe UI", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    body.nav-open { overflow: hidden; }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid rgba(198, 161, 91, .45);
+      outline-offset: 4px;
+    }
+
+    .page-shell {
+      width: 100%;
+      margin: 0;
+      background: var(--paper);
+      overflow: hidden;
+      box-shadow: none;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--container));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: background .25s ease, border-color .25s ease, backdrop-filter .25s ease;
+    }
+
+    .site-header.is-scrolled,
+    .nav-open .site-header {
+      background: rgba(18, 20, 28, .86);
+      border-bottom-color: rgba(255,255,255,.08);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 44px;
+    }
+
+    .brand img {
+      width: 158px;
+      height: auto;
+      filter: invert(1);
+    }
+
+    .menu-toggle {
+      width: 46px;
+      height: 46px;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .menu-toggle span,
+    .menu-toggle::before,
+    .menu-toggle::after {
+      content: "";
+      width: 18px;
+      height: 2px;
+      display: block;
+      background: currentColor;
+      border-radius: 99px;
+      position: absolute;
+      transition: transform .25s ease, opacity .25s ease;
+    }
+
+    .menu-toggle::before { transform: translateY(-6px); }
+    .menu-toggle::after { transform: translateY(6px); }
+
+    .nav-open .menu-toggle span { opacity: 0; }
+    .nav-open .menu-toggle::before { transform: translateY(2px) rotate(45deg); }
+    .nav-open .menu-toggle::after { transform: translateY(-2px) rotate(-45deg); }
+
+    .nav-links {
+      position: fixed;
+      inset: 72px 0 auto 0;
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      padding: 18px 20px 28px;
+      background: rgba(18, 20, 28, .98);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+
+    .nav-open .nav-links { display: flex; }
+
+    .nav-links a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      color: rgba(255,255,255,.8);
+      font-size: 14px;
+      font-weight: 600;
+      transition: color .2s ease;
+    }
+
+    .nav-links a:hover { color: var(--gold-soft); }
+
+    .btn {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 14px 24px;
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 1;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--ink);
+      box-shadow: 0 10px 24px rgba(198, 161, 91, .22);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-soft);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .btn-ghost {
+      border-color: rgba(198, 161, 91, .65);
+      color: #fff;
+      background: rgba(255,255,255,.04);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(198, 161, 91, .14);
+      border-color: var(--gold-soft);
+    }
+
+    .hero {
+      position: relative;
+      background: var(--ink);
+      color: #fff;
+      border-bottom-left-radius: 82px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(18,20,28,.98) 0%, rgba(18,20,28,.9) 34%, rgba(18,20,28,.62) 58%, rgba(18,20,28,.24) 100%),
+        radial-gradient(circle at 78% 14%, rgba(198,161,91,.2), transparent 34%);
+      z-index: 1;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(.78) contrast(1.06);
+      opacity: .58;
+      will-change: transform;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      min-height: 720px;
+      display: grid;
+      align-items: center;
+      padding: 72px 0 100px;
+    }
+
+    .hero-content {
+      max-width: 780px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: var(--gold-soft);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 36px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 600;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 760px;
+      font-size: clamp(34px, 9vw, 56px);
+    }
+
+    .hero h2 {
+      max-width: 820px;
+      margin-top: 22px;
+      color: var(--gold-soft);
+      font-size: clamp(24px, 6vw, 38px);
+    }
+
+    .hero-copy {
+      max-width: 720px;
+      margin-top: 24px;
+      color: rgba(255,255,255,.82);
+    }
+
+    .hero-copy p { margin: 0 0 16px; }
+
+    .hero-loss {
+      max-width: 700px;
+      margin: 22px 0 0;
+      color: rgba(255,255,255,.86);
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.5;
+    }
+
+    .hero-list {
+      display: grid;
+      gap: 10px 12px;
+      margin: 24px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .hero-list li {
+      position: relative;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 11px 14px 11px 38px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 12px;
+      background: rgba(18,20,28,.42);
+      backdrop-filter: blur(5px);
+      font-size: 15px;
+      font-weight: 650;
+      line-height: 1.35;
+    }
+
+    .hero-list li::before {
+      content: "";
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      width: 9px;
+      height: 9px;
+      border: 1px solid var(--gold-soft);
+      border-radius: 50%;
+      background: rgba(198,161,91,.18);
+      transform: translateY(-50%);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      margin: 24px 0 0;
+      padding: 16px 0 0;
+      border-top: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.7);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .hero-trust span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .hero-trust span::before {
+      content: "✓";
+      color: var(--gold-soft);
+      font-weight: 900;
+    }
+
+    .micro {
+      color: rgba(255,255,255,.68);
+      font-size: 13px;
+    }
+
+    section {
+      padding: 64px 0;
+    }
+
+    .split {
+      display: grid;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .visual-balance {
+      min-height: 320px;
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+    }
+
+    .scale-art {
+      width: min(330px, 80vw);
+      opacity: .92;
+      filter: drop-shadow(0 18px 22px rgba(60, 38, 10, .18));
+    }
+
+    .section-kicker {
+      margin: 0 0 12px;
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .7px;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      color: var(--text);
+      font-size: clamp(28px, 7vw, 42px);
+    }
+
+    .section-title .muted {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .lead {
+      max-width: 740px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .metric {
+      min-height: 112px;
+      display: grid;
+      place-items: center;
+      padding: 18px 10px;
+      text-align: center;
+      border: 1px solid rgba(198,161,91,.42);
+      border-radius: 999px;
+      background: rgba(255,255,255,.55);
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--gold);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(24px, 7vw, 34px);
+      line-height: 1;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    .cta-strip {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 12px 12px 12px 22px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-strip span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .icon-pill {
+      width: 44px;
+      height: 44px;
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    .urgency {
+      background: var(--sand);
+    }
+
+    .statement {
+      position: relative;
+      padding: 34px;
+      border-radius: 24px;
+      background: var(--ink);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .statement::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      bottom: -110px;
+      width: 280px;
+      height: 280px;
+      border: 1px solid rgba(198,161,91,.28);
+      border-radius: 50%;
+    }
+
+    .statement h2 {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      font-size: clamp(28px, 6.5vw, 42px);
+    }
+
+    .statement p {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      margin: 22px 0 0;
+      color: rgba(255,255,255,.78);
+      font-size: 18px;
+    }
+
+    .info-panel {
+      background: #fff;
+    }
+
+    .feature-panel {
+      display: grid;
+      gap: 28px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: linear-gradient(135deg, #fff 0%, #fff 58%, #f4efe6 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-panel p {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    .mini-card {
+      align-self: stretch;
+      display: grid;
+      align-content: end;
+      min-height: 240px;
+      padding: 24px;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(18,20,28,.08), rgba(18,20,28,.9)),
+        url("./assets/fies-na-justica.png") center / cover;
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .mini-card span {
+      color: var(--gold-soft);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .services {
+      background: var(--paper);
+    }
+
+    .section-head {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 32px;
+      text-align: center;
+      justify-items: center;
+    }
+
+    .cards {
+      display: grid;
+      gap: 16px;
+    }
+
+    .service-card {
+      min-height: 100%;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(198,161,91,.5);
+      box-shadow: var(--shadow);
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 20px;
+      border: 1px solid rgba(198,161,91,.42);
+      border-radius: 50%;
+      color: var(--gold);
+    }
+
+    .service-card h3 {
+      margin: 0 0 12px;
+      color: var(--text);
+      font-size: 20px;
+      line-height: 1.25;
+    }
+
+    .service-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .faq {
+      background: var(--sand);
+    }
+
+    .faq-list {
+      max-width: 900px;
+      display: grid;
+      gap: 12px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+      overflow: hidden;
+    }
+
+    .faq-item summary {
+      position: relative;
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      padding: 18px 58px 18px 22px;
+      color: var(--text);
+      font-weight: 750;
+      line-height: 1.35;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: "+";
+      position: absolute;
+      right: 22px;
+      top: 50%;
+      color: var(--gold);
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 1;
+      transform: translateY(-50%);
+    }
+
+    .faq-item[open] summary::after { content: "−"; }
+
+    .faq-item p {
+      margin: 0;
+      padding: 0 22px 22px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .about {
+      background: var(--sand);
+    }
+
+    .about-cta-mobile {
+      display: none;
+    }
+
+    .leader-photo {
+      position: relative;
+      min-height: 420px;
+      overflow: hidden;
+      border-radius: 24px;
+      background: var(--ink);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .leader-photo img {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+      object-position: center 14%;
+      filter: saturate(.86) contrast(1.02);
+    }
+
+    .leader-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 42%, rgba(18,20,28,.88));
+    }
+
+    .leader-caption {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      z-index: 1;
+      color: #fff;
+    }
+
+    .leader-caption strong {
+      display: block;
+      font-size: 20px;
+    }
+
+    .leader-caption span {
+      color: var(--gold-soft);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .steps {
+      background: #fff;
+    }
+
+    .step-list {
+      display: grid;
+      gap: 14px;
+      counter-reset: steps;
+    }
+
+    .step {
+      position: relative;
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 16px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      counter-increment: steps;
+    }
+
+    .step::before {
+      content: counter(steps, decimal-leading-zero);
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--gold-soft);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+    }
+
+    .step h3 {
+      margin: 0 0 4px;
+      font-size: 20px;
+      line-height: 1.25;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .contact {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .contact .section-title,
+    .contact .lead { color: #fff; }
+
+    .contact-grid {
+      display: grid;
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .contact-list a,
+    .contact-list span {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: rgba(255,255,255,.82);
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      transition: color .2s ease;
+    }
+
+    .contact-list a:hover { color: var(--gold-soft); }
+
+    .map-link {
+      min-height: 260px;
+      display: block;
+      padding: 0;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 24px;
+      background: rgba(255,255,255,.04);
+      overflow: hidden;
+    }
+
+    .map-link iframe {
+      width: 100%;
+      min-height: 260px;
+      display: block;
+      border: 0;
+      filter: grayscale(.25) contrast(.96);
+    }
+
+    .map-link strong {
+      display: block;
+      color: var(--gold-soft);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 28px;
+      line-height: 1.15;
+    }
+
+    .map-link span {
+      display: block;
+      margin-top: 10px;
+      color: rgba(255,255,255,.68);
+    }
+
+    .site-footer {
+      padding: 22px 0 32px;
+      background: var(--ink);
+      color: rgba(255,255,255,.62);
+      font-size: 13px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,.09);
+    }
+
+    .float-cta {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 30;
+      width: 58px;
+      height: 58px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #07130b;
+      box-shadow: 0 6px 16px rgba(0,0,0,.25);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .float-cta::before {
+      content: attr(data-label);
+      position: absolute;
+      right: calc(100% + 12px);
+      top: 50%;
+      width: max-content;
+      max-width: 240px;
+      padding: 9px 13px;
+      border-radius: 10px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.25;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(8px, -50%);
+      transition: opacity .2s ease, transform .2s ease;
+    }
+
+    .float-cta img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .float-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .float-cta:hover::before,
+    .float-cta:focus-visible::before {
+      opacity: 1;
+      transform: translate(0, -50%);
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (min-width: 640px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: 1.1fr .9fr; align-items: stretch; }
+    }
+
+    @media (min-width: 768px) {
+      .container { width: min(calc(100% - 64px), var(--container)); }
+      section { padding: 88px 0; }
+      .feature-panel { grid-template-columns: 1.15fr .85fr; padding: 38px; }
+      .hero { border-bottom-left-radius: 128px; }
+      .hero-inner { min-height: 720px; padding: 112px 0 92px; }
+      .hero-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .metrics { gap: 18px; }
+      .statement { padding: 48px; }
+      .step-list { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 980px) {
+      .split { grid-template-columns: .95fr 1.05fr; gap: 56px; }
+      .menu-toggle { display: none; }
+      .nav-links {
+        position: static;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 26px;
+        padding: 0;
+        background: transparent;
+        border: 0;
+      }
+      .cards { grid-template-columns: repeat(3, 1fr); }
+      .brand img { width: 184px; }
+      .hero-copy { font-size: 17px; }
+    }
+
+    @media (max-width: 767px) {
+      .split {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 30px;
+      }
+      .split > * {
+        min-width: 0;
+        max-width: 100%;
+      }
+      .intro .visual-balance {
+        min-height: 240px;
+      }
+      .metrics {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .metric {
+        min-height: 92px;
+        border-radius: 18px;
+      }
+      .cta-strip {
+        align-items: stretch;
+        border-radius: 18px;
+        flex-direction: column;
+        padding: 18px;
+      }
+      .cta-strip .icon-pill {
+        width: 100%;
+        border-radius: 999px;
+      }
+      .section-title,
+      .lead {
+        overflow-wrap: anywhere;
+      }
+      .about-cta-desktop { display: none; }
+      .about-cta-mobile {
+        display: flex;
+        justify-content: center;
+        margin-top: 22px;
+      }
+      .about-cta-mobile .btn { width: 100%; }
+    }
+
+    @media (max-width: 480px) {
+      .container { width: min(calc(100% - 28px), var(--container)); }
+      .hero { border-bottom-left-radius: 58px; }
+      .hero-media { width: 100%; opacity: .34; object-position: 62% 0; }
+      .hero-inner { min-height: auto; padding: 104px 0 72px; }
+      .hero-actions .btn { width: 100%; }
+      .statement { padding: 26px; }
+      .step { grid-template-columns: 1fr; }
+      .float-cta { right: 14px; bottom: 14px; }
+      .float-cta::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <nav class="nav container" aria-label="Navegação principal">
+        <a class="brand" href="#inicio" aria-label="Andrade Santos Advogados - início">
+          <img src="./assets/logo-completa.svg" alt="Andrade Santos Advogados" loading="lazy">
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-controls="nav-links" aria-expanded="false"><span></span></button>
+        <div class="nav-links" id="nav-links">
+          <a href="#dor">Urgência</a>
+          <a href="#fies">FIES na Justiça</a>
+          <a href="#sobre">Áreas de atuação</a>
+          <a href="#quem-somos">Quem somos</a>
+          <a href="#atendimento">Atendimento</a>
+          <a href="#duvidas">Dúvidas</a>
+          <a href="#contato">Contato</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <video class="hero-media" autoplay muted loop playsinline poster="./assets/foto-lider.png" aria-label="Vídeo institucional da Andrade Santos Advogados">
+          <source src="./assets/video-hero.mp4" type="video/mp4">
+        </video>
+        <div class="container hero-inner">
+          <div class="hero-content">
+            <p class="eyebrow">Atuação focada em Direito Estudantil e demandas envolvendo FIES</p>
+            <h1 id="hero-title">FIES travado ou problema com sua faculdade?</h1>
+            <p class="hero-loss">Protocolos sem resposta podem atrasar sua matrícula, transferência, diploma ou regularização do FIES.</p>
+            <div class="hero-copy">
+              <ul class="hero-list">
+                <li>FIES travado ou cobrança indevida</li>
+                <li>Matrícula, transferência ou diploma negado</li>
+                <li>Problemas com faculdade ou universidade</li>
+                <li>Prorrogação ou abatimento negado</li>
+                <li>Casos urgentes com prejuízo acadêmico</li>
+              </ul>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://wa.me/5531981201999?text=Ol%C3%A1%2C%20gostaria%20de%20avaliar%20meu%20caso%20jur%C3%ADdico." aria-label="Quero avaliar meu caso pelo WhatsApp">Quero avaliar meu caso pelo WhatsApp</a>
+              <a class="btn btn-ghost" href="#sobre">Ver áreas de atuação</a>
+            </div>
+            <div class="hero-trust" aria-label="Informações de confiança">
+              <span>Direito Estudantil e FIES</span>
+              <span>OAB/MG nº 164.634</span>
+              <span>Sede em Belo Horizonte/MG</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro reveal" aria-labelledby="intro-title">
+        <div class="container split">
+          <div class="visual-balance" aria-hidden="true">
+            <svg class="scale-art" viewBox="0 0 420 420" role="img" aria-label="Ilustração de balança da justiça">
+              <path d="M210 60v250" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+              <path d="M152 310h116" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
+              <path d="M112 346h196" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
+              <path d="M78 132h264" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+              <path d="M94 132l-46 92h92l-46-92Zm232 0l-46 92h92l-46-92Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+              <path d="M210 76c18 0 32 14 32 32s-14 32-32 32-32-14-32-32 14-32 32-32Z" fill="none" stroke="currentColor" stroke-width="7"/>
+            </svg>
+          </div>
+          <div>
+            <h2 class="section-title" id="intro-title">Andrade Santos Advogados</h2>
+            <p class="lead">Seja o estudante concurseiro ou o beneficiário do FIES que luta para alcançar seu sonho de uma vida melhor por meio dos estudos, nossa expertise está voltada para esse público, com o qual nos identificamos e ao qual dedicamos exclusivamente todo o nosso esforço técnico e profissional.</p>
+            <div class="metrics" aria-label="Destaques do escritório">
+              <div class="metric"><div><strong>Foco</strong><span>Atuação voltada ao Direito Estudantil e demandas envolvendo FIES</span></div></div>
+              <div class="metric"><div><strong>OAB/MG</strong><span>nº 164.634</span></div></div>
+              <div class="metric"><div><strong>Belo Horizonte/MG</strong><span>bairro Belvedere, próximo ao BH Shopping</span></div></div>
+            </div>
+            <a class="cta-strip" href="https://wa.me/5531981201999?text=Ol%C3%A1%2C%20gostaria%20de%20avaliar%20meu%20caso%20jur%C3%ADdico." aria-label="Quero avaliar meu caso pelo WhatsApp">
+              <span>Quero avaliar meu caso pelo WhatsApp</span>
+              <span class="icon-pill" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="urgency reveal" id="dor" aria-labelledby="dor-title">
+        <div class="container">
+          <div class="statement">
+            <h2 id="dor-title">Buscar resolver tudo sozinho, administrativamente, é ineficaz — e é você quem perde tempo, tempo que deveria estar dedicando aos seus estudos!</h2>
+            <p>Você não precisa passar por isso sem ajuda. Busque quem entende do assunto. Advogado especializado em Direito Estudantil.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://wa.me/5531981201999?text=Ol%C3%A1%2C%20quero%20saber%20se%20meu%20problema%20tem%20solu%C3%A7%C3%A3o%20jur%C3%ADdica.">Quero saber se meu problema tem solução jurídica</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="info-panel reveal" id="fies" aria-labelledby="fies-title">
+        <div class="container feature-panel">
+          <div>
+            <p class="section-kicker">FIES na Justiça: entenda como funciona</p>
+            <h2 class="section-title" id="fies-title">FIES na Justiça: entenda como funciona</h2>
+            <p>Em muitos casos, é possível pleitear o FIES pela via judicial. Para isso, o estudante geralmente precisa comprovar renda familiar de até 3 salários mínimos por pessoa do grupo familiar e ter realizado o ENEM nos últimos dez anos.</p>
+            <p>Se você tem dúvidas sobre como funciona essa ação, fale com a nossa equipe e entenda o cenário atual envolvendo esse tipo de processo.</p>
+            <a class="btn btn-primary" href="https://wa.me/5531981201999?text=Ol%C3%A1%2C%20gostaria%20de%20avaliar%20meu%20caso%20envolvendo%20o%20FIES.">Quero avaliar meu caso de FIES</a>
+          </div>
+          <div class="mini-card" role="img" aria-label="Imagem representativa da seção FIES na Justiça">
+            <span>Andrade Santos Advogados</span>
+            <strong>Advogados especialistas em Direito Estudantil e Cível</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="services reveal" id="sobre" aria-labelledby="sobre-title">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker">Direito Estudantil</p>
+            <h2 class="section-title" id="sobre-title">Demandas em que atuamos</h2>
+            <p class="lead">Veja algumas situações que podem exigir análise jurídica individualizada.</p>
+          </div>
+          <div class="cards">
+            <article class="service-card">
+              <div class="card-icon" aria-hidden="true">§</div>
+              <h3>Regularização de aditamento do FIES</h3>
+              <p>Muitos alunos encontram dificuldades nas diversas modalidades de aditamento do FIES. A ação judicial buscando regularizar essa situação tem sido a melhor saída.</p>
+            </article>
+            <article class="service-card">
+              <div class="card-icon" aria-hidden="true">↔</div>
+              <h3>Transferência de FIES</h3>
+              <p>Atuamos para efetivar a transferência entre faculdades diante da negativa das instituições de ensino.</p>
+            </article>
+            <article class="service-card">
+              <div class="card-icon" aria-hidden="true">+</div>
+              <h3>Obtenção do FIES para o curso de Medicina</h3>
+              <p>Existe viabilidade de concessão do FIES pela via judicial para alunos que ficaram abaixo da nota de corte exigida para utilização do financiamento.</p>
+            </article>
+            <article class="service-card">
+              <div class="card-icon" aria-hidden="true">□</div>
+              <h3>Problemas com grade acadêmica</h3>
+              <p>Muitos alunos enfrentam dificuldades relacionadas à grade acadêmica. A ação judicial buscando regularizar essa situação tem se mostrado a melhor alternativa.</p>
+            </article>
+            <article class="service-card">
+              <div class="card-icon" aria-hidden="true">✓</div>
+              <h3>Problemas com emissão de diploma</h3>
+              <p>Atuamos para garantir a efetiva emissão de diplomas pelas instituições de ensino.</p>
+            </article>
+            <article class="service-card">
+              <div class="card-icon" aria-hidden="true">◎</div>
+              <h3>Problemas com matrícula</h3>
+              <p>Auxiliamos na resolução de problemas envolvendo matrículas em universidades e escolas.</p>
+            </article>
+            <article class="service-card">
+              <div class="card-icon" aria-hidden="true">$</div>
+              <h3>Cobranças indevidas do FIES</h3>
+              <p>Analisamos cobranças relacionadas a períodos não utilizados, contratos e outras inconsistências no financiamento estudantil.</p>
+            </article>
+            <article class="service-card">
+              <div class="card-icon" aria-hidden="true">⌛</div>
+              <h3>Prorrogação e abatimento</h3>
+              <p>Avaliamos negativas de prorrogação de carência e de abatimentos previstos para profissionais da saúde.</p>
+            </article>
+            <article class="service-card">
+              <div class="card-icon" aria-hidden="true">⚖</div>
+              <h3>Outras demandas acadêmicas</h3>
+              <p>Atuação em questões como colação de grau, transferência, cotas, documentação e conflitos com instituições de ensino.</p>
+            </article>
+          </div>
+          <div class="hero-actions" style="justify-content:center;margin-top:32px">
+            <a class="btn btn-primary" href="https://wa.me/5531981201999?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20se%20tenho%20direito%20no%20meu%20caso.">Quero saber se tenho direito</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="about reveal" id="quem-somos" aria-labelledby="quem-title">
+        <div class="container split">
+          <div>
+            <p class="section-kicker">Quem somos</p>
+            <h2 class="section-title" id="quem-title">Andrade Santos Advogados</h2>
+            <p class="lead">Liderado pelo advogado Dr. Aldenir Santos, inscrito na OAB/MG sob o nº 164.634, o escritório Andrade Santos Advogados tem sede em Belo Horizonte/MG, no bairro Belvedere, próximo ao BH Shopping, e conta com uma equipe jovem, altamente capacitada e dedicada.</p>
+            <p class="lead">Seja o estudante concurseiro ou o beneficiário do FIES que luta para alcançar seu sonho de uma vida melhor por meio dos estudos, nossa expertise está voltada para esse público, com o qual nos identificamos e ao qual dedicamos exclusivamente todo o nosso esforço técnico e profissional. Estamos aqui para ajudar você a solucionar o seu problema — e não deixar o seu sonho morrer.</p>
+            <div class="hero-actions about-cta-desktop">
+              <a class="btn btn-primary" href="https://wa.me/5531981201999?text=Ol%C3%A1%2C%20gostaria%20de%20avaliar%20meu%20caso%20jur%C3%ADdico.">Quero avaliar meu caso</a>
+            </div>
+          </div>
+          <figure class="leader-photo">
+            <img src="./assets/foto-lider.png" alt="Dr. Aldenir Santos" loading="lazy">
+            <figcaption class="leader-caption">
+              <strong>Dr. Aldenir Santos</strong>
+              <span>OAB/MG nº 164.634</span>
+            </figcaption>
+          </figure>
+          <div class="about-cta-mobile">
+            <a class="btn btn-primary" href="https://wa.me/5531981201999?text=Ol%C3%A1%2C%20gostaria%20de%20avaliar%20meu%20caso%20jur%C3%ADdico.">Quero avaliar meu caso</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="steps reveal" id="atendimento" aria-labelledby="atendimento-title">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker">Como será seu atendimento</p>
+            <h2 class="section-title" id="atendimento-title">Entenda como será o seu atendimento</h2>
+          </div>
+          <div class="step-list">
+            <article class="step">
+              <div>
+                <h3>Contato</h3>
+                <p>Entre em contato conosco através do WhatsApp, tocando em um dos botões disponíveis no site.</p>
+              </div>
+            </article>
+            <article class="step">
+              <div>
+                <h3>Atendimento ágil</h3>
+                <p>Estaremos totalmente prontos para atender você e começar a discutir o seu caso, elaborando uma estratégia personalizada.</p>
+              </div>
+            </article>
+            <article class="step">
+              <div>
+                <h3>Transparência</h3>
+                <p>Seu caso será acompanhado e devidamente esclarecido a você, com total transparência e responsabilidade.</p>
+              </div>
+            </article>
+            <article class="step">
+              <div>
+                <h3>Ética profissional</h3>
+                <p>Todas as suas informações, documentações e particularidades serão tratadas com total sigilo e ética por parte do escritório.</p>
+              </div>
+            </article>
+          </div>
+          <div class="hero-actions" style="justify-content:center;margin-top:32px">
+            <a class="btn btn-primary" href="https://wa.me/5531981201999?text=Ol%C3%A1%2C%20gostaria%20de%20iniciar%20a%20avalia%C3%A7%C3%A3o%20do%20meu%20caso.">Iniciar avaliação pelo WhatsApp</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq reveal" id="duvidas" aria-labelledby="faq-title">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker">Perguntas frequentes</p>
+            <h2 class="section-title" id="faq-title">Dúvidas antes de entrar em contato</h2>
+            <p class="lead">Informações iniciais para você entender como funciona a avaliação do seu caso.</p>
+          </div>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>Meu problema precisa necessariamente virar um processo?</summary>
+              <p>Não necessariamente. Primeiro é preciso analisar os fatos, os documentos e as tentativas de solução já realizadas. A medida adequada depende das particularidades de cada caso.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Quais documentos ajudam na avaliação?</summary>
+              <p>Contratos, protocolos, e-mails, mensagens, boletos, comprovantes, histórico acadêmico e respostas da instituição ou do FIES podem ajudar. A equipe orientará quais documentos são relevantes para a sua situação.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Como começa o atendimento pelo WhatsApp?</summary>
+              <p>Você apresenta um resumo do problema e recebe orientação sobre as informações necessárias para a análise inicial. Depois disso, o escritório explica os possíveis próximos passos.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Uma avaliação garante resultado favorável?</summary>
+              <p>Não. Cada situação possui fatos, documentos e fundamentos próprios. A análise jurídica identifica possibilidades e riscos, sem promessa de resultado.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Posso entrar em contato se meu caso for urgente?</summary>
+              <p>Sim. Informe logo no início qual é o prazo ou prejuízo acadêmico envolvido, como risco relacionado à matrícula, transferência, diploma, colação de grau ou FIES.</p>
+            </details>
+          </div>
+          <div class="hero-actions" style="justify-content:center">
+            <a class="btn btn-primary" href="https://wa.me/5531981201999?text=Ol%C3%A1%2C%20ainda%20tenho%20uma%20d%C3%BAvida%20sobre%20meu%20caso.">Quero tirar uma dúvida pelo WhatsApp</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact reveal" id="contato" aria-labelledby="contato-title">
+        <div class="container">
+          <p class="section-kicker">Contato</p>
+          <h2 class="section-title" id="contato-title">Outras formas de contato</h2>
+          <div class="contact-grid">
+            <ul class="contact-list">
+              <li><a href="https://wa.me/5531981201999?text=Ol%C3%A1%2C%20gostaria%20de%20avaliar%20meu%20caso%20jur%C3%ADdico.">Telefone/WhatsApp: (31) 98120-1999</a></li>
+              <li><a href="mailto:contato@andradesantosadv.com.br">E-mail: contato@andradesantosadv.com.br</a></li>
+              <li><a href="https://www.instagram.com/andradesantosadvogados">Instagram: @andradesantosadvogados</a></li>
+              <li><span>Endereço: Rua Desembargador Jorge Fontana, 408, sala 906 - Bairro Belvedere, CEP 30330-000 - Belo Horizonte/MG</span></li>
+            </ul>
+            <div class="map-link">
+              <iframe
+                title="Mapa da Andrade Santos Advogados"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=Rua%20Desembargador%20Jorge%20Fontana%2C%20408%2C%20sala%20906%2C%20Belvedere%2C%20Belo%20Horizonte%2C%20MG&output=embed">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">Copyright 2026. Todos os direitos reservados. Andrade Santos Advogados.</div>
+    </footer>
+  </div>
+
+  <a class="float-cta" href="https://wa.me/5531981201999?text=Ol%C3%A1%2C%20gostaria%20de%20avaliar%20meu%20caso%20jur%C3%ADdico." aria-label="Quero avaliar meu caso pelo WhatsApp" data-label="Avalie seu caso pelo WhatsApp">
+    <img src="./assets/whatsapp.svg" alt="" aria-hidden="true">
+  </a>
+
+  <script src="./vendor/gsap/gsap.min.js"></script>
+  <script src="./vendor/gsap/ScrollTrigger.min.js"></script>
+  <script>
+    const body = document.body;
+    const header = document.querySelector(".site-header");
+    const toggle = document.querySelector(".menu-toggle");
+    const links = document.querySelectorAll(".nav-links a");
+
+    const updateHeaderState = () => {
+      header.classList.toggle("is-scrolled", window.scrollY > 24);
+    };
+
+    updateHeaderState();
+    window.addEventListener("scroll", updateHeaderState, { passive: true });
+
+    toggle.addEventListener("click", () => {
+      const isOpen = body.classList.toggle("nav-open");
+      toggle.setAttribute("aria-expanded", String(isOpen));
+      toggle.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+    });
+
+    links.forEach((link) => {
+      link.addEventListener("click", () => {
+        body.classList.remove("nav-open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Abrir menu");
+      });
+    });
+
+    const initFallbackAnimations = () => {
+      document.documentElement.dataset.gsap = "fallback";
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const distance = reduceMotion ? 30 : 56;
+      const horizontalDistance = reduceMotion ? 20 : 42;
+      const duration = reduceMotion ? 800 : 1100;
+
+      const animateElements = (elements, stagger = 70) => {
+        elements.forEach((element, index) => {
+          const direction = index % 2 === 0 ? -1 : 1;
+          element.animate(
+            [
+              {
+                opacity: 0,
+                transform: `translate3d(${direction * horizontalDistance}px, ${distance}px, 0) scale(.96)`
+              },
+              {
+                opacity: 1,
+                transform: "translate3d(0, 0, 0) scale(1)"
+              }
+            ],
+            {
+              duration,
+              delay: index * stagger,
+              easing: "cubic-bezier(.22, 1, .36, 1)",
+              fill: "both"
+            }
+          );
+        });
+      };
+
+      animateElements(
+        Array.from(document.querySelectorAll(
+          ".brand, .hero .eyebrow, .hero h1, .hero-loss, .hero-list li, .hero .hero-actions, .hero-trust, .float-cta"
+        )),
+        reduceMotion ? 25 : 85
+      );
+
+      const sections = document.querySelectorAll("main .reveal");
+
+      if ("IntersectionObserver" in window) {
+        const fallbackObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            animateElements([entry.target], 0);
+            fallbackObserver.unobserve(entry.target);
+          });
+        }, { threshold: 0.12 });
+
+        sections.forEach((section) => fallbackObserver.observe(section));
+      } else {
+        animateElements(Array.from(sections), 55);
+      }
+    };
+
+    const initGsapAnimations = () => {
+      if (!window.gsap || !window.ScrollTrigger) {
+        initFallbackAnimations();
+        return;
+      }
+
+      gsap.registerPlugin(ScrollTrigger);
+      document.documentElement.dataset.gsap = "active";
+      gsap.defaults({ duration: 0.72, ease: "power3.out" });
+
+      const motion = gsap.matchMedia();
+      const animatedProps = "transform,opacity,visibility,willChange";
+
+      motion.add(
+        {
+          isDesktop: "(min-width: 980px)",
+          isMobile: "(max-width: 979px)",
+          reduceMotion: "(prefers-reduced-motion: reduce)"
+        },
+        (context) => {
+          const { isDesktop, reduceMotion } = context.conditions;
+          const motionFactor = reduceMotion ? 0.55 : 1;
+          document.documentElement.dataset.motionMode =
+            reduceMotion ? "reduced" : "full";
+          const rawEntranceDistance = isDesktop ? 64 : 38;
+          const entranceDistance = rawEntranceDistance * motionFactor;
+          const entranceDuration = reduceMotion ? 0.82 : (isDesktop ? 1.12 : 0.9);
+          const entranceStagger = reduceMotion ? 0.065 : (isDesktop ? 0.12 : 0.085);
+          const scaleMotionValue = (value = 0) => {
+            if (typeof value === "function") {
+              return (index, element, elements) =>
+                value(index, element, elements) * motionFactor;
+            }
+            return value * motionFactor;
+          };
+          const scaleFromOne = (value = 1) => 1 + (value - 1) * motionFactor;
+
+          const visibleNavItems = gsap.utils
+            .toArray(".brand, .nav-links a, .menu-toggle")
+            .filter((element) => getComputedStyle(element).display !== "none");
+
+          const heroSelectors = [
+            ".hero .eyebrow",
+            ".hero h1",
+            ".hero-loss",
+            ".hero-list li",
+            ".hero .hero-actions",
+            ".hero-trust"
+          ];
+          const heroItems = gsap.utils.toArray(heroSelectors.join(", "));
+
+          const heroTimeline = gsap.timeline({
+            defaults: { duration: entranceDuration, ease: "power3.out" },
+            onComplete: () => {
+              gsap.set(visibleNavItems, { clearProps: animatedProps });
+              gsap.set(heroItems, { clearProps: animatedProps });
+            }
+          });
+
+          gsap.set(visibleNavItems, {
+            autoAlpha: 0,
+            y: -24 * motionFactor,
+            willChange: "transform, opacity"
+          });
+          gsap.set(heroItems, {
+            autoAlpha: 0,
+            y: entranceDistance,
+            willChange: "transform, opacity"
+          });
+          gsap.set(".hero h1", {
+            x: (isDesktop ? -72 : -32) * motionFactor
+          });
+          gsap.set(".hero-loss", {
+            x: (isDesktop ? -52 : -24) * motionFactor
+          });
+          gsap.set(".hero-list li", {
+            x: (index) =>
+              (index % 2 === 0 ? -1 : 1) *
+              (isDesktop ? 46 : 24) *
+              motionFactor
+          });
+          gsap.set(".hero .hero-actions, .hero-trust", {
+            x: (isDesktop ? -38 : -20) * motionFactor
+          });
+          gsap.set(".float-cta", {
+            autoAlpha: 0,
+            scale: scaleFromOne(0.68),
+            willChange: "transform, opacity"
+          });
+
+          heroTimeline
+            .addLabel("header")
+            .to(visibleNavItems, {
+              autoAlpha: 1,
+              y: 0,
+              stagger: 0.055
+            }, "header")
+            .fromTo(".hero-media", {
+              scale: scaleFromOne(1.14),
+              opacity: reduceMotion ? 0.26 : 0.12
+            }, {
+              scale: 1,
+              opacity: 0.58,
+              duration: reduceMotion ? 1.15 : 2.2,
+              ease: "power2.out"
+            }, "header")
+            .addLabel("message", isDesktop ? 0.38 : 0.26)
+            .to(".hero .eyebrow", { autoAlpha: 1, y: 0 }, "message")
+            .to(".hero h1", {
+              autoAlpha: 1,
+              x: 0,
+              y: 0,
+              duration: reduceMotion ? 0.46 : 1.35
+            }, "message+=0.16")
+            .to(".hero-loss", {
+              autoAlpha: 1,
+              x: 0,
+              y: 0
+            }, "message+=0.5")
+            .to(".hero-list li", {
+              autoAlpha: 1,
+              x: 0,
+              y: 0,
+              stagger: entranceStagger
+            }, "message+=0.72")
+            .to(".hero .hero-actions", {
+              autoAlpha: 1,
+              x: 0,
+              y: 0
+            }, "message+=1.08")
+            .to(".hero-trust", {
+              autoAlpha: 1,
+              x: 0,
+              y: 0
+            }, "message+=1.28")
+            .to(".float-cta", {
+              autoAlpha: 1,
+              scale: 1,
+              duration: reduceMotion ? 0.42 : 0.9,
+              ease: "back.out(1.7)",
+              clearProps: animatedProps
+            }, "message+=1.45");
+
+          ScrollTrigger.create({
+            trigger: ".hero",
+            start: "top bottom",
+            end: "bottom top",
+            onEnterBack: () => heroTimeline.restart()
+          });
+
+          if (isDesktop && !reduceMotion) {
+            gsap.to(".hero-media", {
+              yPercent: 15,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: 1.2
+              }
+            });
+          }
+
+          const createRevealTimeline = (trigger, targets, options = {}) => {
+            const elements = gsap.utils
+              .toArray(targets)
+              .filter((element) => getComputedStyle(element).display !== "none");
+
+            if (!elements.length) return null;
+
+            gsap.set(elements, {
+              autoAlpha: 0,
+              x: scaleMotionValue(options.x ?? 0),
+              y: scaleMotionValue(options.y ?? rawEntranceDistance),
+              scale: scaleFromOne(options.scale ?? 1),
+              rotation: scaleMotionValue(options.rotation ?? 0),
+              willChange: "transform, opacity"
+            });
+
+            return gsap.timeline({
+              scrollTrigger: {
+                trigger,
+                start: options.start ?? "top 88%",
+                toggleActions: "restart none restart none"
+              },
+              defaults: {
+                duration: reduceMotion ? 0.82 : (options.duration ?? 1.08),
+                ease: options.ease ?? "power3.out"
+              }
+            }).to(elements, {
+              autoAlpha: 1,
+              x: 0,
+              y: 0,
+              scale: 1,
+              rotation: 0,
+              stagger: reduceMotion ? 0.055 : (options.stagger ?? 0.09),
+              clearProps: animatedProps
+            });
+          };
+
+          const introElements = gsap.utils.toArray(
+            ".intro .visual-balance, .intro .section-title, .intro .lead, .intro .metric, .intro .cta-strip"
+          );
+          const scalePaths = gsap.utils.toArray(".scale-art path");
+
+          scalePaths.forEach((path) => {
+            const pathLength = path.getTotalLength();
+            gsap.set(path, {
+              strokeDasharray: pathLength,
+              strokeDashoffset: pathLength
+            });
+          });
+
+          gsap.set(introElements, {
+            autoAlpha: 0,
+            y: (isDesktop ? 38 : 24) * motionFactor,
+            willChange: "transform, opacity"
+          });
+          gsap.set(".intro .visual-balance", {
+            x: (isDesktop ? -96 : -34) * motionFactor,
+            rotation: -2.5 * motionFactor
+          });
+          gsap.set(".intro .section-title, .intro .lead, .intro .metric, .intro .cta-strip", {
+            x: (isDesktop ? 72 : 28) * motionFactor
+          });
+          gsap.set(".intro .metric", {
+            scale: scaleFromOne(0.86),
+            rotation: (index) => (index - 1) * 2 * motionFactor
+          });
+
+          const introTimeline = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".intro",
+              start: "top 86%",
+              toggleActions: "restart none restart none"
+            },
+            defaults: { duration: reduceMotion ? 0.82 : 1.12, ease: "power3.out" }
+          });
+
+          introTimeline
+            .to(".intro .visual-balance", {
+              autoAlpha: 1,
+              x: 0,
+              y: 0,
+              rotation: 0
+            })
+            .to(scalePaths, {
+              strokeDashoffset: 0,
+              duration: reduceMotion ? 0.9 : 1.65,
+              stagger: reduceMotion ? 0.055 : 0.12,
+              ease: "power2.inOut",
+              clearProps: "strokeDasharray,strokeDashoffset"
+            }, "<0.14")
+            .to(".intro .section-title", {
+              autoAlpha: 1,
+              x: 0,
+              y: 0
+            }, "<0.28")
+            .to(".intro .lead", {
+              autoAlpha: 1,
+              x: 0,
+              y: 0
+            }, "<0.24")
+            .to(".intro .metric", {
+              autoAlpha: 1,
+              x: 0,
+              y: 0,
+              scale: 1,
+              rotation: 0,
+              stagger: reduceMotion ? 0.035 : 0.16,
+              clearProps: animatedProps
+            }, "<0.22")
+            .to(".intro .cta-strip", {
+              autoAlpha: 1,
+              x: 0,
+              y: 0,
+              clearProps: animatedProps
+            }, "<0.24")
+            .set(".intro .visual-balance, .intro .section-title, .intro .lead", {
+              clearProps: animatedProps
+            });
+
+          createRevealTimeline(".urgency", ".statement", {
+            scale: 0.9,
+            y: 72,
+            rotation: -1.2,
+            duration: 1.25,
+            start: "top 90%"
+          });
+
+          createRevealTimeline(".info-panel", ".feature-panel > *", {
+            x: (index) => (index === 0 ? -1 : 1) * (isDesktop ? 92 : 38),
+            y: 46,
+            rotation: (index) => (index === 0 ? -1.4 : 1.4),
+            stagger: 0.24,
+            duration: 1.2
+          });
+
+          createRevealTimeline(
+            ".services",
+            ".services .section-head > *, .service-card, .services > .container > .hero-actions",
+            {
+              x: (index) => (index % 2 === 0 ? -1 : 1) * (isDesktop ? 58 : 28),
+              y: 54,
+              rotation: (index) => (index % 2 === 0 ? -1.5 : 1.5),
+              scale: 0.94,
+              stagger: isDesktop ? 0.11 : 0.075,
+              duration: 1.05
+            }
+          );
+
+          createRevealTimeline(
+            ".about",
+            ".about .section-kicker, .about .section-title, .about .lead, .about-cta-desktop, .leader-photo, .about-cta-mobile",
+            {
+              x: (index, element) => element.matches(".leader-photo")
+                ? (isDesktop ? 92 : 36)
+                : (isDesktop ? -64 : -28),
+              y: 48,
+              rotation: (index, element) => element.matches(".leader-photo") ? 1.8 : -0.8,
+              stagger: 0.14,
+              duration: 1.16
+            }
+          );
+
+          createRevealTimeline(
+            ".steps",
+            ".steps .section-head > *, .step, .steps > .container > .hero-actions",
+            {
+              x: (index) => (index % 2 === 0 ? -1 : 1) * (isDesktop ? 66 : 30),
+              y: 42,
+              rotation: (index) => (index % 2 === 0 ? -1 : 1),
+              stagger: 0.13,
+              duration: 1.08
+            }
+          );
+
+          createRevealTimeline(
+            ".faq",
+            ".faq .section-head > *, .faq-item, .faq > .container > .hero-actions",
+            {
+              x: (index) => (index % 2 === 0 ? -1 : 1) * (isDesktop ? 48 : 22),
+              y: 32,
+              stagger: 0.12,
+              duration: 1
+            }
+          );
+
+          createRevealTimeline(
+            ".contact",
+            ".contact .section-kicker, .contact .section-title, .contact-grid > *",
+            {
+              x: (index, element) => element.matches(".map-link")
+                ? (isDesktop ? 74 : 30)
+                : (isDesktop ? -74 : -30),
+              y: 44,
+              stagger: 0.18,
+              duration: 1.18,
+              start: "top 92%"
+            }
+          );
+
+          if (!reduceMotion) {
+            gsap.to(".scale-art", {
+              y: isDesktop ? -30 : -16,
+              rotation: 2.2,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".intro",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.25
+              }
+            });
+
+            gsap.to(".mini-card > *", {
+              y: isDesktop ? -28 : -14,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".info-panel",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.15
+              }
+            });
+
+            gsap.fromTo(".leader-photo img", {
+              scale: 1.02,
+              yPercent: 2
+            }, {
+              scale: 1.12,
+              yPercent: -4,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".about",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.35
+              }
+            });
+
+            gsap.fromTo(".map-link iframe", {
+              scale: 1.07,
+              yPercent: 2
+            }, {
+              scale: 1.02,
+              yPercent: -2,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".contact",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.3
+              }
+            });
+
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: ".cta-strip",
+                start: "top 86%",
+                toggleActions: "restart none restart none"
+              }
+            }).to(".cta-strip .icon-pill", {
+              x: 9,
+              duration: 0.72,
+              repeat: 1,
+              yoyo: true,
+              ease: "power2.inOut",
+              clearProps: "transform"
+            });
+
+            gsap.timeline({
+              repeat: -1,
+              repeatDelay: 3.4
+            }).to(".float-cta img", {
+              rotation: 9,
+              scale: 1.14,
+              duration: 0.46,
+              ease: "power2.out"
+            }).to(".float-cta img", {
+              rotation: 0,
+              scale: 1,
+              duration: 0.62,
+              ease: "back.out(2)",
+              clearProps: "transform"
+            });
+          }
+
+          const cardListeners = [];
+
+          if (isDesktop && !reduceMotion) {
+            document.querySelectorAll(".service-card").forEach((card) => {
+              const icon = card.querySelector(".card-icon");
+              let bounds;
+              const rotateXTo = gsap.quickTo(card, "rotationX", {
+                duration: 0.42,
+                ease: "power3.out"
+              });
+              const rotateYTo = gsap.quickTo(card, "rotationY", {
+                duration: 0.42,
+                ease: "power3.out"
+              });
+
+              const handleEnter = () => {
+                bounds = card.getBoundingClientRect();
+                gsap.set(card, {
+                  transformPerspective: 900,
+                  transformOrigin: "center"
+                });
+                gsap.to(card, {
+                  y: -10,
+                  scale: 1.025,
+                  duration: 0.42,
+                  ease: "power3.out",
+                  overwrite: "auto"
+                });
+                gsap.to(icon, {
+                  rotation: 10,
+                  scale: 1.12,
+                  duration: 0.42,
+                  ease: "back.out(1.8)",
+                  overwrite: "auto"
+                });
+              };
+
+              const handleMove = (event) => {
+                if (!bounds) return;
+                const horizontal = (event.clientX - bounds.left) / bounds.width - 0.5;
+                const vertical = (event.clientY - bounds.top) / bounds.height - 0.5;
+                rotateYTo(horizontal * 5);
+                rotateXTo(vertical * -4);
+              };
+
+              const handleLeave = () => {
+                bounds = null;
+                rotateXTo(0);
+                rotateYTo(0);
+                gsap.to(card, {
+                  y: 0,
+                  scale: 1,
+                  rotationX: 0,
+                  rotationY: 0,
+                  duration: 0.52,
+                  ease: "power3.out",
+                  overwrite: "auto",
+                  onComplete: () => gsap.set(card, { clearProps: "transform" })
+                });
+                gsap.to(icon, {
+                  rotation: 0,
+                  scale: 1,
+                  duration: 0.46,
+                  ease: "power3.out",
+                  overwrite: "auto",
+                  clearProps: "transform"
+                });
+              };
+
+              card.addEventListener("pointerenter", handleEnter);
+              card.addEventListener("pointermove", handleMove);
+              card.addEventListener("pointerleave", handleLeave);
+              cardListeners.push(
+                [card, "pointerenter", handleEnter],
+                [card, "pointermove", handleMove],
+                [card, "pointerleave", handleLeave]
+              );
+            });
+          }
+
+          const faqListeners = [];
+
+          document.querySelectorAll(".faq-item").forEach((item) => {
+            const handleToggle = () => {
+              if (!item.open) return;
+              const answer = item.querySelector("p");
+              gsap.fromTo(answer, {
+                autoAlpha: 0,
+                y: -8
+              }, {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.38,
+                ease: "power2.out",
+                overwrite: "auto",
+                clearProps: animatedProps
+              });
+            };
+
+            item.addEventListener("toggle", handleToggle);
+            faqListeners.push([item, handleToggle]);
+          });
+
+          const refreshTriggers = () => ScrollTrigger.refresh();
+
+          if (document.readyState === "complete") {
+            requestAnimationFrame(refreshTriggers);
+          } else {
+            window.addEventListener("load", refreshTriggers, { once: true });
+          }
+
+          return () => {
+            cardListeners.forEach(([card, eventName, handler]) => {
+              card.removeEventListener(eventName, handler);
+            });
+            faqListeners.forEach(([item, handleToggle]) => {
+              item.removeEventListener("toggle", handleToggle);
+            });
+            window.removeEventListener("load", refreshTriggers);
+          };
+        }
+      );
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initGsapAnimations, { once: true });
+    } else {
+      initGsapAnimations();
+    }
+  </script>
+</body>
+</html>
